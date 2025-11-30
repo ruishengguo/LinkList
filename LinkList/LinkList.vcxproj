@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="link_list.h" />
+    <ClInclude Include="list_algo.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="test.cpp" />

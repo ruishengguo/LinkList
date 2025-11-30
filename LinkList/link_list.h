@@ -110,6 +110,9 @@ public:
 		bool operator!=(const iterator& other) const {
 			return other.ptr != ptr;
 		}
+		bool operator==(const iterator& other) const {
+			return other.ptr != ptr;
+		}
 		T& operator* () {
 			if (ptr == nullptr) {
 				throw new exception("List index out of range.");
