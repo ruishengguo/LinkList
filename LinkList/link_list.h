@@ -1,7 +1,10 @@
 #pragma once
 #include <initializer_list>
 #include <exception>
-using namespace std;
+
+using std::size_t;
+using std::exception;
+using std::initializer_list;
 
 /*
 	container of data for a single node of link list
@@ -40,6 +43,8 @@ public:
 */
 template<typename T>
 class LinkList {
+	// the length of the list
+	size_t cnt = 0;
 public:
 	// the iterator class
 	class iterator {
@@ -49,8 +54,8 @@ public:
 		}
 		using pointer = Node<T>*;
 		pointer ptr;
-	public:
-		iterator(pointer p) : ptr(p) {}
+		LinkList<T>* master;
+		iterator(pointer p, LinkList<T>* _master) : ptr(p), master(_master) {}
 	public:
 		iterator& operator++() {
 			if (ptr == nullptr || ptr->nxt == nullptr) {
@@ -108,6 +113,10 @@ public:
 			}
 			return *this;
 		}
+		iterator& operator=(const pointer& pt) {
+			ptr = pt;
+			return *this;
+		}
 		bool operator!=(const iterator& other) const {
 			return other.ptr != ptr;
 		}
@@ -122,15 +131,14 @@ public:
 		}
 		~iterator() {
 			ptr = nullptr;
+			master = nullptr;
 		}
 	};
-private:
 	friend class iterator;
+private:
 	// notice: Iter_end is always the next of Iter_back except for the list is empty
-	iterator Iter_end = new Node<T>();
+	iterator Iter_end = { new Node<T>(), this };
 	iterator Iter_begin = Iter_end, Iter_back = Iter_end;
-	// the length of the list
-	size_t cnt = 0;
 public:
 	LinkList() {}
 	LinkList(initializer_list<T> lst) {
@@ -138,19 +146,19 @@ public:
 			push_back(Elem);
 		}
 	}
-	iterator begin() {
+	iterator begin() const {
 		return Iter_begin;
 	}
-	T front() {
+	T front() const {
 		return *Iter_begin;
 	}
-	iterator end() {
+	iterator end() const {
 		return Iter_end;
 	}
-	T back() {
+	T back() const {
 		return *Iter_back;
 	}
-	size_t size() {
+	size_t size() const {
 		return cnt;
 	}
 	// append element to the back of the list
@@ -189,43 +197,84 @@ public:
 			cnt++;
 		}
 	}
-	// not implemented
 	// delete the last node of the list
 	void pop_back() {
-		throw new exception("This method hasn't been implemented.");
+		if (Iter_back == Iter_end) {
+			throw new exception("pop_back() called on empty link list");
+			return;
+		}
+		cnt--;
+		Node<T>* temp = Iter_back.ptr;
+		if (cnt == 0) {
+			delete temp;
+			Iter_begin = Iter_back = Iter_end;
+		}
+		else {
+			Iter_back--;
+			delete temp;
+			Iter_back.ptr->nxt = Iter_end.ptr;
+			Iter_end.ptr->last = Iter_back.ptr;
+		}		
 	}
-	// not implemented
 	// delete the first node of the list
 	void pop_front() {
-		throw new exception("This method hasn't been implemented.");
+		iterator it = Iter_begin;
+		if (Iter_begin == Iter_end) {
+			throw new exception("pop_front() called on empty link list");
+			return;
+		}
+		cnt--;
+		Node<T>* temp = Iter_begin.ptr;
+		if (cnt == 0) {
+			delete temp;
+			Iter_begin = Iter_back = Iter_end;
+		}
+		else {
+			Iter_begin++;
+			delete temp;
+		}
 	}
-	// not implemented
 	// delete the given node of the list
 	void remove(iterator& Iter) {
-		throw new exception("This method hasn't been implemented.");
+		if (Iter == Iter_end) {
+			throw new exception("List index out of range");
+		}
+		if (Iter.master != this) {
+			throw new exception("Remove range out of the list");
+		}
+		cnt--;
+		if (Iter == Iter_begin) {
+			return pop_front();
+		}
+		else if (Iter == Iter_back) {
+			return pop_back();
+		}
+		else {
+			(Iter - 1).ptr->nxt = (Iter + 1).ptr;
+			(Iter + 1).ptr->last = (Iter - 1).ptr;
+			delete Iter.ptr;
+			Iter = Iter_end;
+		}
 	}
-	// not implemented
 	// return the value of the indexed node of the list
 	T& operator[](const size_t& Idx) {
 		return *(begin() + Idx);
 	}
-	// not implemented
 	// the copy construct method of the class
 	LinkList(const LinkList& other) {
 		for (const T& Elem : other) {
 			push_back(Elem);
 		}
 	}
-	// not implemented
 	// copy the other list to this list
 	// return *this;
-	LinkList& operator=(const LinkList& other) {
+	LinkList<T>& operator=(const LinkList<T>& other) {
 		clear();
 		for (const T& Elem : other) {
 			push_back(Elem);
 		}
+		return *this;
 	}
-	// not implemented
 	// clear the list
 	void clear() {
 		for (; Iter_begin != Iter_end; ) {
@@ -239,7 +288,6 @@ public:
 		Iter_begin = Iter_end;
 		Iter_back = Iter_end;
 	}
-	// not implemented
 	// deconstruct the object
 	virtual ~LinkList() {
 		clear();
