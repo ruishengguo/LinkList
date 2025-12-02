@@ -123,6 +123,10 @@ public:
 		bool operator==(const iterator& other) const {
 			return other.ptr == ptr;
 		}
+		// decide whether two iterators belong to the same list
+		bool operator&(const iterator& other) const {
+			return other.master == master;
+		}
 		T& operator* () {
 			if (ptr == nullptr) {
 				throw new exception("List index out of range.");
