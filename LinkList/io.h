@@ -9,7 +9,7 @@ using std::endl;
 using std::fixed;
 using std::setprecision;
 
-static class Data {
+static struct Data {
 	static LinkList<Cart> carts;
 };
 
