@@ -123,11 +123,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="cart_basic.h" />
+    <ClInclude Include="io.h" />
     <ClInclude Include="link_list.h" />
     <ClInclude Include="list_algo.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="io.cpp" />
     <ClCompile Include="test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="products.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

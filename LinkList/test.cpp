@@ -1,5 +1,5 @@
-#include "link_list.h"
-#include "list_algo.h"
+#include "cart_basic.h"
+#include "list.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -9,9 +9,9 @@ bool dec(const int& a, const int& b) {
 }
 
 int main() {
-	LinkList<int> lst = {1, 2, 3};
-	cout << *query(lst.begin(), lst.end(), 2, dec);
-
+	string s;
+	cin >> s;
+	cout << s;
 }
 int main1() {
 	//vector<int> lst2 = { 1, 2, 3 }, lst3 = {1, 2, 3};

@@ -11,7 +11,7 @@ void reverse(typename LinkList<T>::iterator& begin, typename LinkList<T>::iterat
 	throw new exception("This method hasn't been implemented.");
 }
 
-// query from the list.s
+// query from the list
 template<typename T>
 typename LinkList<T>::iterator query(typename LinkList<T>::iterator begin, typename LinkList<T>::iterator end, const T& Elem) {
 	if (!(begin & end)) {
