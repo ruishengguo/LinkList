@@ -1,5 +1,16 @@
 #include "io.h"
 
+bool match(const Cart& cart, const string& userName) {
+	return cart.getOwnerName() == userName;
+}
+bool match(const BuyRequest& req, const string& productName) {
+	return req.product.getName() == productName;
+}
+bool match(const Product*& prodPtr, const string& productName) {
+	return prodPtr->getName() == productName;
+}
+
+
 // 输出商品名、商品单价、购买量
 std::ostream& operator<<(std::ostream& cout, const BuyRequest& req) {
 
