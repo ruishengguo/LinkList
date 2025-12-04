@@ -12,6 +12,7 @@ int main() {
 	string s;
 	cin >> s;
 	cout << s;
+	return 0;
 }
 int main1() {
 	//vector<int> lst2 = { 1, 2, 3 }, lst3 = {1, 2, 3};
@@ -44,5 +45,6 @@ int main1() {
 	for (int& i : lst) {
 		cout << i << ' ';
 	}
+
 	return 0;
 }
