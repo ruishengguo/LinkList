@@ -1,5 +1,6 @@
 #include "io.h"
-
+LinkList<Product*> Product::product_lst;
+LinkList<Cart> Data::carts;
 bool match(const Cart& cart, const string& userName) {
 	return cart.getOwnerName() == userName;
 }
@@ -11,14 +12,23 @@ bool match(const Product*& prodPtr, const string& productName) {
 }
 
 
-// 输出商品名、商品单价、购买量
+//输出商品名、商品单价、购买量
 std::ostream& operator<<(std::ostream& cout, const BuyRequest& req) {
 
 }
 
 // 从文件中读取所有商品及单价
 void readAllProducts() {
-
+    std::ifstream fin("products.txt");
+    if (!fin) return;
+    string word;
+    string number;
+    while (fin >> word)
+    {
+        fin >> number;
+        cout << word << stod(number);
+        new Product(word, stod(number));
+    }
 }
 // 购买
 void purchase(const string& userName, const string& prodName, const int& count) {
