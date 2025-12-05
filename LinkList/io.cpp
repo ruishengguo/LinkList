@@ -1,6 +1,6 @@
 #include "io.h"
 
-LinkList<Product*> Product::product_lst;
+LinkList<Product> Product::product_lst;
 LinkList<Cart> Data::carts;
 
 bool match_cart(const Cart& cart, const string& userName) {
@@ -9,8 +9,8 @@ bool match_cart(const Cart& cart, const string& userName) {
 bool match_req(const BuyRequest& req, const string& productName) {
 	return req.product.getName() == productName;
 }
-bool match_prod(const Product*& prodPtr, const string& productName) {
-	return prodPtr->getName() == productName;
+bool match_prod(const Product& prodPtr, const string& productName) {
+	return prodPtr.getName() == productName;
 }
 
 

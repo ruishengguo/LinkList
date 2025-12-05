@@ -11,11 +11,10 @@ private:
     string name;
     double price;
 public:
-    // static container for pointers of all constructed product object
-    static LinkList<Product*> product_lst;
+    static LinkList<Product> product_lst;
     Product(const string& _Name = "", double _Price = 0.0) : name(_Name), price(_Price) {};
     void push() {
-        product_lst.push_back(this);
+        product_lst.push_back(*this);
     }
     // getter·½·¨
     string getName() const { return name; };

@@ -9,8 +9,8 @@ bool dec(const int& a, const int& b) {
 
 int main() {
 	readAllProducts();
-	for (Product* prod : Product::product_lst) {
-		cout << prod->getName() << ' ' << prod->getPrice() << endl;
+	for (Product prod : Product::product_lst) {
+		cout << prod.getName() << ' ' << prod.getPrice() << endl;
 	}
 	Data::carts.push_back(Cart("a"));
 	//Data::carts[0].push_back({ *Product::product_lst[0], 3 });
