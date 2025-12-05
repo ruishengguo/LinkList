@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "link_list.h"
 #include "list_algo.h"
 #include <string>
@@ -16,7 +16,7 @@ public:
     void push() {
         product_lst.push_back(*this);
     }
-    // getter·½·¨
+    // getteræ–¹æ³•
     string getName() const { return name; };
     double getPrice() const { return price; };
 };
@@ -31,7 +31,7 @@ class Cart: public LinkList<BuyRequest>
 private:
     string ownerName;
 public:
-    // ¹¹Ôìº¯Êý
+    // æž„é€ å‡½æ•°
     Cart(const string& owner = "") : ownerName(owner) {}
     string getOwnerName() const { return ownerName; };
 };

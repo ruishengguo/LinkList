@@ -1,4 +1,4 @@
-#include "io.h"
+ï»¿#include "io.h"
 
 LinkList<Product> Product::product_lst;
 LinkList<Cart> Data::carts;
@@ -14,12 +14,12 @@ bool match_prod(const Product& prodPtr, const string& productName) {
 }
 
 
-// Êä³öÉÌÆ·Ãû¡¢ÉÌÆ·µ¥¼Û¡¢¹ºÂòÁ¿
+// è¾“å‡ºå•†å“åã€å•†å“å•ä»·ã€è´­ä¹°é‡
 std::ostream& operator<<(std::ostream& cout, const BuyRequest& req) {
-	return cout << "¹ºÂòÉÌÆ·: " << req.product.getName() << "(µ¥¼Û£º" << req.product.getPrice() << ") - " << req.count << "¼ş" << std::endl;
+	return cout << "è´­ä¹°å•†å“: " << req.product.getName() << "(å•ä»·ï¼š" << req.product.getPrice() << ") - " << req.count << "ä»¶" << std::endl;
 }
 
-// ´ÓÎÄ¼şÖĞ¶ÁÈ¡ËùÓĞÉÌÆ·¼°µ¥¼Û
+// ä»æ–‡ä»¶ä¸­è¯»å–æ‰€æœ‰å•†å“åŠå•ä»·
 void readAllProducts() {
     std::ifstream fin("products.txt");
     if (!fin) return;
@@ -32,36 +32,36 @@ void readAllProducts() {
         p->push();
     }
 }
-// ¹ºÂò
+// è´­ä¹°
 void purchase(const string& userName, const string& prodName, const int& count) {
 
 }
-// È¡Ïû¹ºÂò
+// å–æ¶ˆè´­ä¹°
 void cancel(const string& userName, const string& prodName, const int& count) {
 
 }
-// ²éÑ¯ËùÓĞ¹ºÂò
+// æŸ¥è¯¢æ‰€æœ‰è´­ä¹°
 void query(const string& userName) {
-    cout << "\n¹ºÂò¼ÇÂ¼²éÑ¯" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
-    cout << "ÓÃ»§: " << userName << endl;
+    cout << "\nè´­ä¹°è®°å½•æŸ¥è¯¢" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
+    cout << "ç”¨æˆ·: " << userName << endl;
 
-    // ÔÚÈ«¾Ö¹ºÎï³µÁ´±íÖĞ²éÕÒ¸ÃÓÃ»§
+    // åœ¨å…¨å±€è´­ç‰©è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾è¯¥ç”¨æˆ·
     auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
 
     if (cartIt == Data::carts.end())
     {
-        cout << "´íÎó: ÓÃ»§ \"" << userName << "\" ²»´æÔÚ" << endl;
-        cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+        cout << "é”™è¯¯: ç”¨æˆ· \"" << userName << "\" ä¸å­˜åœ¨" << endl;
+        cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
         return;
     }
 
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
 
     if ((*cartIt).size() == 0)
     {
-        cout << "¸ÃÓÃ»§ÔİÎŞ¹ºÂò¼ÇÂ¼" << endl;
-        cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+        cout << "è¯¥ç”¨æˆ·æš‚æ— è´­ä¹°è®°å½•" << endl;
+        cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
         return;
     }
 
@@ -69,67 +69,67 @@ void query(const string& userName) {
     double totalCost = 0.0;
     int totalItems = 0;
 
-    // Ê¹ÓÃ Cart µÄ begin() ºÍ end() Ö±½Ó±éÀú
+    // ä½¿ç”¨ Cart çš„ begin() å’Œ end() ç›´æ¥éå†
     for (const BuyRequest& req: *cartIt)
     {
-        // Ê¹ÓÃ operator<< Êä³ö
+        // ä½¿ç”¨ operator<< è¾“å‡º
         cout << index++ << ". " << req << endl;
 
-        // ÀÛ¼ÓÍ³¼Æ
+        // ç´¯åŠ ç»Ÿè®¡
         totalCost += req.product.getPrice() * req.count;
         totalItems += req.count;
     }
 
-    // Êä³öÍ³¼ÆĞÅÏ¢
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
-    cout << "   Í³¼ÆĞÅÏ¢:" << endl;
-    cout << "   ÉÌÆ·×ÜÊı: " << totalItems << " ¼ş" << endl;
-    cout << "   ×Ü¼Æ½ğ¶î: £¤" << totalCost << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+    // è¾“å‡ºç»Ÿè®¡ä¿¡æ¯
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
+    cout << "   ç»Ÿè®¡ä¿¡æ¯:" << endl;
+    cout << "   å•†å“æ€»æ•°: " << totalItems << " ä»¶" << endl;
+    cout << "   æ€»è®¡é‡‘é¢: ï¿¥" << totalCost << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
 
 }
-// Çå¿Õ¹ºÎï³µ
+// æ¸…ç©ºè´­ç‰©è½¦
 void clear(const string& userName) {
-    cout << "\nÇå¿Õ¹ºÎï³µ" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+    cout << "\næ¸…ç©ºè´­ç‰©è½¦" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
 
-    // ÔÚÈ«¾Ö¹ºÎï³µÁ´±íÖĞ²éÕÒ¸ÃÓÃ»§
+    // åœ¨å…¨å±€è´­ç‰©è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾è¯¥ç”¨æˆ·
     auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
 
     if (cartIt == Data::carts.end())
     {
-        cout << "´íÎó: ÓÃ»§ \"" << userName << "\" ²»´æÔÚ" << endl;
-        cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+        cout << "é”™è¯¯: ç”¨æˆ· \"" << userName << "\" ä¸å­˜åœ¨" << endl;
+        cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
         return;
     }
     Data::carts.remove(cartIt);
 
-    // Êä³ö½á¹û
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
-    cout << "   ÒÑÇå¿Õ¹ºÎï³µ£¡" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+    // è¾“å‡ºç»“æœ
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
+    cout << "   å·²æ¸…ç©ºè´­ç‰©è½¦ï¼" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
 
 }
-// ½áÕË
+// ç»“è´¦
 void checkout(const string& userName) {
-    cout << "\n½áÕË²Ù×÷" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
-    cout << "ÓÃ»§: " << userName << endl;
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
+    cout << "\nç»“è´¦æ“ä½œ" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
+    cout << "ç”¨æˆ·: " << userName << endl;
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
 
-    // ÔÚÈ«¾Ö¹ºÎï³µÁ´±íÖĞ²éÕÒ¸ÃÓÃ»§
+    // åœ¨å…¨å±€è´­ç‰©è½¦é“¾è¡¨ä¸­æŸ¥æ‰¾è¯¥ç”¨æˆ·
     auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
 
     if (cartIt == Data::carts.end())
     {
-        cout << "´íÎó: ÓÃ»§ \"" << userName << "\" ²»´æÔÚ" << endl;
-        cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+        cout << "é”™è¯¯: ç”¨æˆ· \"" << userName << "\" ä¸å­˜åœ¨" << endl;
+        cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
         return;
     }
 
-    // ÏÔÊ¾¹ºÎï³µÄÚÈİ²¢¼ÆËã×Ü¼Û
-    cout << "¹ºÎï³µÄÚÈİ:" << endl;
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
+    // æ˜¾ç¤ºè´­ç‰©è½¦å†…å®¹å¹¶è®¡ç®—æ€»ä»·
+    cout << "è´­ç‰©è½¦å†…å®¹:" << endl;
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
 
     double totalCost = 0.0;
     int totalItems = 0;
@@ -141,22 +141,22 @@ void checkout(const string& userName) {
 
         cout << request << endl;
     }
-    // ÏÔÊ¾ÕËµ¥
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
-    cout << "   ÕËµ¥»ã×Ü:" << endl;
-    cout << "   ÉÌÆ·×ÜÊı: " << totalItems << " ¼ş" << endl;
-    cout << "   ÉÌÆ·×Ü¶î: £¤" << totalCost << endl;
+    // æ˜¾ç¤ºè´¦å•
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
+    cout << "   è´¦å•æ±‡æ€»:" << endl;
+    cout << "   å•†å“æ€»æ•°: " << totalItems << " ä»¶" << endl;
+    cout << "   å•†å“æ€»é¢: ï¿¥" << totalCost << endl;
 
-    // Çå¿Õ¹ºÎï³µ
+    // æ¸…ç©ºè´­ç‰©è½¦
     Data::carts.remove(cartIt);
 
-    // ´òÓ¡ÊÕ¾İ
-    cout << "©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤" << endl;
-    cout << "   µç×ÓÊÕ¾İ" << endl;
-    cout << "   ÓÃ»§: " << userName << endl;
-    cout << "   ½ğ¶î: £¤" << totalCost << endl;
-    cout << "   ×´Ì¬: ÒÑÖ§¸¶" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
-    cout << "   ¸ĞĞ»¹âÁÙ£¬»¶Ó­ÏÂ´ÎÔÙÀ´£¡" << endl;
-    cout << "¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T" << endl;
+    // æ‰“å°æ”¶æ®
+    cout << "â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€" << endl;
+    cout << "   ç”µå­æ”¶æ®" << endl;
+    cout << "   ç”¨æˆ·: " << userName << endl;
+    cout << "   é‡‘é¢: ï¿¥" << totalCost << endl;
+    cout << "   çŠ¶æ€: å·²æ”¯ä»˜" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
+    cout << "   æ„Ÿè°¢å…‰ä¸´ï¼Œæ¬¢è¿ä¸‹æ¬¡å†æ¥ï¼" << endl;
+    cout << "â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•" << endl;
 }
