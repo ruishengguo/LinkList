@@ -13,7 +13,10 @@ private:
 public:
     // static container for pointers of all constructed product object
     static LinkList<Product*> product_lst;
-    Product(const string& _Name = "", double _Price = 0.0) : name(_Name), price(_Price) { product_lst.push_back(this); };
+    Product(const string& _Name = "", double _Price = 0.0) : name(_Name), price(_Price) {};
+    void push() {
+        product_lst.push_back(this);
+    }
     // getter方法
     string getName() const { return name; };
     double getPrice() const { return price; };
@@ -21,21 +24,15 @@ public:
 
 struct BuyRequest {
     Product product;
-    int count;
+    int count = 0;
 };
 
-class Cart
+class Cart: public LinkList<BuyRequest>
 {
 private:
     string ownerName;
-    LinkList<BuyRequest> itemList;
 public:
     // 构造函数
     Cart(const string& owner = "") : ownerName(owner) {}
-    LinkList<BuyRequest>::iterator begin() { return itemList.begin(); }
-    LinkList<BuyRequest>::iterator end() { return itemList.end(); }
-    // ========== 基本操作 ==========
     string getOwnerName() const { return ownerName; };
-    void clear() { itemList.clear(); };
-    bool empty() const { return itemList.size() == 0; };
 };

@@ -1,5 +1,4 @@
-#include "cart_basic.h"
-#include "list.h"
+#include "io.h"
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -9,9 +8,16 @@ bool dec(const int& a, const int& b) {
 }
 
 int main() {
-	string s;
-	cin >> s;
-	cout << s;
+	readAllProducts();
+	for (Product* prod : Product::product_lst) {
+		cout << prod->getName() << ' ' << prod->getPrice() << endl;
+	}
+	Data::carts.push_back(Cart("a"));
+	//Data::carts[0].push_back({ *Product::product_lst[0], 3 });
+	//Data::carts[0].push_back({ *Product::product_lst[1], 2 });
+	query("a");
+	checkout("a");
+	query("a");
 }
 int main1() {
 	//vector<int> lst2 = { 1, 2, 3 }, lst3 = {1, 2, 3};
