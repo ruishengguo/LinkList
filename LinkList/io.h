@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include "cart_basic.h"
 #include <iostream>
 #include <fstream>
@@ -13,18 +13,18 @@ struct Data {
 	static LinkList<Cart> carts;
 };
 
-// Êä³öÉÌÆ·Ãû¡¢ÉÌÆ·µ¥¼Û¡¢¹ºÂòÁ¿
+// è¾“å‡ºå•†å“åã€å•†å“å•ä»·ã€è´­ä¹°é‡
 std::ostream& operator<<(std::ostream& cout, const BuyRequest& req);
 
-// ´ÓÎÄ¼şÖĞ¶ÁÈ¡ËùÓĞÉÌÆ·¼°µ¥¼Û
+// ä»æ–‡ä»¶ä¸­è¯»å–æ‰€æœ‰å•†å“åŠå•ä»·
 void readAllProducts();
-// ¹ºÂò
+// è´­ä¹°
 void purchase(const string& userName, const string& prodName, const int& count);
-// È¡Ïû¹ºÂò
+// å–æ¶ˆè´­ä¹°
 void cancel(const string& userName, const string& prodName, const int& count);
-// ²éÑ¯ËùÓĞ¹ºÂò
+// æŸ¥è¯¢æ‰€æœ‰è´­ä¹°
 void query(const string& userName);
-// Çå¿Õ¹ºÎï³µ
+// æ¸…ç©ºè´­ç‰©è½¦
 void clear(const string& userName);
-// ½áÕË
+// ç»“è´¦
 void checkout(const string& userName);
