@@ -7,17 +7,48 @@ bool dec(const int& a, const int& b) {
 	return a == b + 1;
 }
 
-int main() {
+int main2() {
 	readAllProducts();
-	for (Product prod : Product::product_lst) {
-		cout << prod.getName() << ' ' << prod.getPrice() << endl;
+	while (true) {
+		int c;
+		string name, prod;
+		int cnt;
+		cin >> c;
+		switch (c) {
+		case 0:
+			return 0;
+		case 1:
+		{
+			cin >> name >> prod >> cnt;
+			purchase(name, prod, cnt);
+			break;
+		}
+		case 2:
+		{
+			cin >> name >> prod >> cnt;
+			cancel(name, prod, cnt);
+			break;
+		}
+		case 3:
+		{
+			cin >> name;
+			query(name);
+			break;
+		}
+		case 4:
+		{
+			cin >> name;
+			clear(name);
+			break;
+		}
+		case 5:
+		{
+			cin >> name;
+			checkout(name);
+			break;
+		}
+		}
 	}
-	Data::carts.push_back(Cart("a"));
-	//Data::carts[0].push_back({ *Product::product_lst[0], 3 });
-	//Data::carts[0].push_back({ *Product::product_lst[1], 2 });
-	query("a");
-	checkout("a");
-	query("a");
 }
 int main1() {
 	//vector<int> lst2 = { 1, 2, 3 }, lst3 = {1, 2, 3};

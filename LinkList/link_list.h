@@ -246,7 +246,6 @@ public:
 		if (Iter.master != this) {
 			throw new exception("Remove range out of the list");
 		}
-		cnt--;
 		if (Iter == Iter_begin) {
 			return pop_front();
 		}
@@ -254,6 +253,7 @@ public:
 			return pop_back();
 		}
 		else {
+			cnt--;
 			(Iter - 1).ptr->nxt = (Iter + 1).ptr;
 			(Iter + 1).ptr->last = (Iter - 1).ptr;
 			delete Iter.ptr;

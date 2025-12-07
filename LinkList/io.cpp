@@ -34,11 +34,62 @@ void readAllProducts() {
 }
 // 购买
 void purchase(const string& userName, const string& prodName, const int& count) {
+    cout << "开始购买" << count << "件" << prodName << "\n════════════════════════════════════════\n";
 
+    auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
+
+    if (cartIt == Data::carts.end()) {
+        Data::carts.push_back(Cart(userName));
+        cartIt = --Data::carts.end();
+    }
+    auto prodIt = query(Product::product_lst.begin(), Product::product_lst.end(), prodName, match_prod);
+    if (prodIt == Product::product_lst.end()) {
+        cout << "错误: 商品 \"" << prodName << "\" 不存在" << endl;
+        cout << "════════════════════════════════════════" << endl;
+        return;
+    }
+
+    auto reqIt = query((*cartIt).begin(), (*cartIt).end(), prodName, match_req);
+    if (reqIt != (*cartIt).end()) {
+        (*reqIt).count += count;
+    }
+    else {
+        (*cartIt).push_back({ *prodIt, count });
+    }
+    cout << "购买成功\n════════════════════════════════════════\n";
 }
 // 取消购买
 void cancel(const string& userName, const string& prodName, const int& count) {
+    cout << "取消购买用户\"" << userName << "\"的" << count << "件" << prodName << "\n";
+    cout << "════════════════════════════════════════" << endl;
 
+    auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
+
+    if (cartIt == Data::carts.end())
+    {
+        cout << "错误: 用户 \"" << userName << "\" 不存在" << endl;
+        cout << "════════════════════════════════════════" << endl;
+        return;
+    }
+
+    auto reqIt = query((*cartIt).begin(), (*cartIt).end(), prodName, match_req);
+    if (reqIt == (*cartIt).end()) {
+        cout << "错误: 用户 \"" << userName << "\" 未购买" << prodName << "\n";
+        cout << "════════════════════════════════════════" << endl;
+        return;
+    }
+
+    if ((*reqIt).count < count) {
+        cout << "错误: 用户 \"" << userName << "\" 购买的" << prodName << "数量不足\n";
+        cout << "════════════════════════════════════════" << endl;
+        return;
+    }
+
+    (*reqIt).count -= count;
+    if (!(*reqIt).count) {
+        (*cartIt).remove(reqIt);
+    }
+    cout << "成功取消购买" << count << "件" << prodName << "\n════════════════════════════════════════\n";
 }
 // 查询所有购买
 void query(const string& userName) {

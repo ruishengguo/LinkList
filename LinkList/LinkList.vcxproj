@@ -130,7 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="io.cpp" />
-    <ClCompile Include="test.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="products.txt" />

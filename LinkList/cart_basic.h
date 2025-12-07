@@ -16,7 +16,6 @@ public:
     void push() {
         product_lst.push_back(*this);
     }
-    // getter方法
     string getName() const { return name; };
     double getPrice() const { return price; };
 };
@@ -31,7 +30,6 @@ class Cart: public LinkList<BuyRequest>
 private:
     string ownerName;
 public:
-    // 构造函数
     Cart(const string& owner = "") : ownerName(owner) {}
     string getOwnerName() const { return ownerName; };
 };
