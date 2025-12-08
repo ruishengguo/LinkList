@@ -53,10 +53,16 @@ void input_checkout() {
 	string name = input<string>("输入用户名：");
 	checkout(name);
 }
+void prt_prodlst() {
+	for (const Product& p : Product::product_lst) {
+		cout << p.getName() << "\t-\t" << p.getPrice() << endl;
+	}
+}
 
 int main() {
 	readAllProducts();
 	LinkList<action> act_lst({
+		{prt_prodlst, "查看商品种类"},
 		{input_purchase, "登记购买商品"},
 		{input_cancel, "登记取消购买商品"},
 		{input_query, "查询所有购买"},
