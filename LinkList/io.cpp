@@ -37,18 +37,16 @@ void purchase(const string& userName, const string& prodName, const int& count) 
     cout << "开始购买" << count << "件" << prodName << "\n════════════════════════════════════════\n";
 
     auto cartIt = query(Data::carts.begin(), Data::carts.end(), userName, match_cart);
-
-    if (cartIt == Data::carts.end()) {
-        Data::carts.push_back(Cart(userName));
-        cartIt = --Data::carts.end();
-    }
     auto prodIt = query(Product::product_lst.begin(), Product::product_lst.end(), prodName, match_prod);
     if (prodIt == Product::product_lst.end()) {
         cout << "错误: 商品 \"" << prodName << "\" 不存在" << endl;
         cout << "════════════════════════════════════════" << endl;
         return;
     }
-
+    if (cartIt == Data::carts.end()) {
+        Data::carts.push_back(Cart(userName));
+        cartIt = --Data::carts.end();
+    }
     auto reqIt = query((*cartIt).begin(), (*cartIt).end(), prodName, match_req);
     if (reqIt != (*cartIt).end()) {
         (*reqIt).count += count;

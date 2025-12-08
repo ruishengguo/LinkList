@@ -54,9 +54,11 @@ void input_checkout() {
 	checkout(name);
 }
 void prt_prodlst() {
+	cout << "商品名\t-\t单价\n====================" << endl;
 	for (const Product& p : Product::product_lst) {
 		cout << p.getName() << "\t-\t" << p.getPrice() << endl;
 	}
+	cout << endl;
 }
 
 int main() {
